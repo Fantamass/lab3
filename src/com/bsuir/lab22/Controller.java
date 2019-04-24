@@ -48,7 +48,7 @@ public class Controller {
     		if(price == 0)
     			alert.setHeaderText(Strings.INFO_NO_MONEY);
     		else {
-    			alert.setHeaderText("Списано " + String.valueOf(price) + " рублей");
+    			alert.setHeaderText("РЎРїРёСЃР°РЅРѕ " + String.valueOf(price) + " СЂСѓР±Р»РµР№");
     			Model.getInstance().setPaid();
     		}
     	}        
@@ -80,11 +80,13 @@ public class Controller {
             alert.showAndWait();
     	}
     	
-    	view.getLabels().get("package1").setText(view.getLabels().get("cart1").getText());
-    	view.getLabels().get("package2").setText(view.getLabels().get("cart2").getText());
-    	view.getLabels().get("package3").setText(view.getLabels().get("cart3").getText());
+    	for(int i = 1; i < 4; ++i){
+            String cartItem = view.getLabels().get("cart" + i).getText();
+            view.getLabels().get("package" + i).setText(cartItem);
+    	}
+    	
     	Model.getInstance().cartToPackage();
-		Model.getInstance().setNotPaid();
+      Model.getInstance().setNotPaid();
     	clearButtonPressed();
     }  
     
